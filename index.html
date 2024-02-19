@@ -4,32 +4,52 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Color Palette Tester</title>
+
+    <style>
+      .palette-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .palette-color {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+
+      .palette-color > input[type="text"] {
+        width: 10rem;
+      }
+    </style>
   </head>
   <body>
     <h1>Color Palette Tester</h1>
-    <div>
-      <input type="text" id="hex1" placeholder="#000000" />
-      <input type="color" id="color1" />
-    </div>
-    <div>
-      <input type="text" id="hex2" placeholder="#000000" />
-      <input type="color" id="color2" />
-    </div>
-    <div>
-      <input type="text" id="hex3" placeholder="#000000" />
-      <input type="color" id="color3" />
-    </div>
-    <div>
-      <input type="text" id="hex4" placeholder="#000000" />
-      <input type="color" id="color4" />
-    </div>
-    <div>
-      <input type="text" id="hex5" placeholder="#000000" />
-      <input type="color" id="color5" />
-    </div>
-    <div>
-      <input type="text" id="hex6" placeholder="#000000" />
-      <input type="color" id="color6" />
+    <div class="palette-container">
+      <div class="palette-color">
+        <input type="text" id="hex1" placeholder="#000000" />
+        <input type="color" id="color1" />
+      </div>
+      <div class="palette-color">
+        <input type="text" id="hex2" placeholder="#000000" />
+        <input type="color" id="color2" />
+      </div>
+      <div class="palette-color">
+        <input type="text" id="hex3" placeholder="#000000" />
+        <input type="color" id="color3" />
+      </div>
+      <div class="palette-color">
+        <input type="text" id="hex4" placeholder="#000000" />
+        <input type="color" id="color4" />
+      </div>
+      <div class="palette-color">
+        <input type="text" id="hex5" placeholder="#000000" />
+        <input type="color" id="color5" />
+      </div>
+      <div class="palette-color">
+        <input type="text" id="hex6" placeholder="#000000" />
+        <input type="color" id="color6" />
+      </div>
     </div>
 
     <br />
