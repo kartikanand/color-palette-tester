@@ -19,7 +19,7 @@ function createColorInput(parent) {
   paletteColorDiv.innerHTML = `
     <input type="text" class="js-hex" placeholder="#000000" />
     <input type="color" class="js-color" />
-    <button class="js-remove-palette-color">X</button>
+    <button type="button" class="js-remove-palette-color">X</button>
   `;
 
   // Find the button within the newly created div and add click event listener
@@ -37,14 +37,18 @@ function createColorInput(parent) {
 }
 
 function init() {
+  const paletteContainer = document.querySelector(".palette-container");
   for (let i = 1; i <= 5; i++) {
-    const paletteContainer = document.querySelector(".palette-container");
     createColorInput(paletteContainer);
   }
 
   document
     .getElementById("test-palette")
     .addEventListener("click", performAnalysis);
+
+  document.getElementById("add-palette").addEventListener("click", () => {
+    createColorInput(paletteContainer);
+  });
 
   function performAnalysis() {
     const colors = [];
