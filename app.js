@@ -1,7 +1,4 @@
-function syncInputs(hexId, colorId) {
-  const hexInput = document.getElementById(hexId);
-  const colorInput = document.getElementById(colorId);
-
+function syncInputs(hexInput, colorInput) {
   hexInput.addEventListener("input", () => {
     if (/^#[0-9A-F]{6}$/i.test(hexInput.value)) {
       colorInput.value = hexInput.value;
@@ -13,9 +10,36 @@ function syncInputs(hexId, colorId) {
   });
 }
 
+function createColorInput(parent) {
+  // Create the div element
+  const paletteColorDiv = document.createElement("div");
+  paletteColorDiv.className = "palette-color";
+
+  // Set the innerHTML of the div to include the inputs and button
+  paletteColorDiv.innerHTML = `
+    <input type="text" class="js-hex" placeholder="#000000" />
+    <input type="color" class="js-color" />
+    <button class="js-remove-palette-color">X</button>
+  `;
+
+  // Find the button within the newly created div and add click event listener
+  const button = paletteColorDiv.querySelector(".js-remove-palette-color");
+  button.onclick = function () {
+    paletteColorDiv.remove();
+  };
+
+  const hexInput = paletteColorDiv.querySelector(".js-hex");
+  const colorInput = paletteColorDiv.querySelector(".js-color");
+  syncInputs(hexInput, colorInput);
+
+  // Append the div to the specified parent element
+  parent.appendChild(paletteColorDiv);
+}
+
 function init() {
-  for (let i = 1; i <= 6; i++) {
-    syncInputs(`hex${i}`, `color${i}`);
+  for (let i = 1; i <= 5; i++) {
+    const paletteContainer = document.querySelector(".palette-container");
+    createColorInput(paletteContainer);
   }
 
   document
@@ -23,14 +47,17 @@ function init() {
     .addEventListener("click", performAnalysis);
 
   function performAnalysis() {
-    let colors = [];
-    for (let i = 1; i <= 6; i++) {
-      const colorValue = document.getElementById(`hex${i}`).value;
+    const colors = [];
+    const hexInputs = document.querySelectorAll(".js-hex");
+
+    for (const hexInput of hexInputs) {
+      const colorValue = hexInput.value;
       if (colorValue && colorValue.length > 0) {
         colors.push(colorValue);
       }
     }
-    let permutations = getPermutations(colors);
+
+    const permutations = getPermutations(colors);
     displayResults(permutations);
   }
 
